@@ -8,47 +8,13 @@ new  category of branches: "topic branches".
 
 New calls:
 
+`git hf topic start <project> <topic>`
 
-`git hf topic [list [<feature name>]]`
-
-*  Gives a list of available commands, OR
-*  Lists the current topic branches associated with a feature. Uses the current feature if we do not specify one,
-   or takes an feature name, minus the <i>/feature</i> prefix.
-
-
-`git hf topic start <feature name> <topic name>`
- 
 *  Creates a new topic branch from the given project branch. The project branch <b>must</b> exist. If the name of
-   the feature branch is <i>feature/myFeature</i> then we should just give <i>myFeature</i>. The name of the newly
-   created topic branch will be <i>topic/$FEATURE/$TOPIC</i>.
-
-
-`git hf topic rebase [-i(nteractive)] [<topic name>]`
-
-*  Rebases the topic branch against the feature branch it is associated with. Begins interactive rebase if given
-   <i>-i</i> as an argument. Uses the current topic if we do not specify one,
-   or takes an topic name, minus the "topic/$FEATURE" prefix.
-
-
-`git hf topic checkout <feature name> <topic name>`
-
-* Checkout the topic branch. You must specifically give the feature branch name so
-  that no confusion occurs between similarly named topic branches on different
-  features.
-
-
-`git hf topic submit [<topic name>]`
-
-* Publish the topic branch and open a pull request between it and $PROJECT.
-
-
-`git hf topic cancel [<topic name>]`
-
-* Abandon the topic branch, deleting it locally and on Github if it has been
-  published.
-
+  the feature branch is <i>feature/myProject</i> then we should just give <i>myProject</i>. The name of the newly
+  created topic branch will be <i>myProject/topicname</i>.
   
-`git hf topic finish [-k(eep)] <topic name>`
+`git hf topic finish`
 
 *  This command will <i>merge --ff-only</i> the topic branch into the feature, closing the topic locally
   AND on the remote. Finally it will push the updated feature branch to the server.
