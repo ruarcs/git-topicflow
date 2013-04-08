@@ -40,6 +40,63 @@
 # policies, either expressed or implied, of Vincent Driessen.
 #
 
+#
+# The default workflow here is to create a feature branch using:
+#
+#       git hf feature start myFeature
+#
+# or we can pull a feature someone has already started.
+#
+# We then decide on some item of work that needs to be done, and open
+# a topic branch for it:
+#
+#       git hf topic start myFeature someTask
+#
+# We then work away. When we complete our work we should submit for approval:
+#
+#       git hf topic submit -i
+#
+# This will first sync our copy of the project branch, then do an interactive rebase
+# of the topic branch against the project branch. We should then, if necessary,
+# squash our commits into a reasonable set of commits.
+#
+# The command will then  automatically create a pull request on Github, which in this
+# case would be:
+#
+#       someTask   ---->   myFeature
+#
+# An editor will be opened to allow a description to be put entered.
+#
+####################### FINISHING UP ######################################
+#
+# If the code is approved, then we can finish the topic:
+#
+#       git hf checkout myFeature someTask
+#
+#       git hf topic finish
+#
+#
+####################### FIXING ISSUES ######################################
+#
+# If we need to make changes we can simply repeat our submit task:
+#
+#       git hf topic fix start
+#
+# We select to ‘edit‘ the incorrect commit. When finished editing whichever commits
+# we have selected we run:
+#
+#       git hf topic fix finish
+#
+# The fix will be pushed upstream and we can wait for more feedback on our pull request
+#
+#
+####################### ABANDONING CHANGES ###################################
+#
+# At any stage we can abandon a topic branch by using:
+#
+#       git hf topic cancel someTask
+#
+
 require_git_repo
 require_hubflow_initialized
 hubflow_load_settings
@@ -50,6 +107,8 @@ usage() {
 	echo "       git hf topic start <feature name> <topic name>"
 	echo "		 git hf topic checkout <feature name> <topic name>"
 	echo "       git hf topic rebase [-i(nteractive)] [<topic name>]"
+	echo "       git hf topic submit [-i(nteractive)] [<topic name>]"
+	echo "       git hf topic fix [start|finish] [<topic name>]"	
 	echo "		 git hf topic cancel [-f] <topic name>"
 	echo "       git hf topic finish [<name>]"
 }
