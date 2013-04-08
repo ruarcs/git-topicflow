@@ -46,10 +46,11 @@ hubflow_load_settings
 PREFIX=$(git config --get hubflow.prefix.topic)
 
 usage() {
-	echo "usage: git hf topic [list]"
-	echo "       git hf topic start <project> <name>"
-	echo "       git hf topic rebase [-i] [<name>]"
-	echo "       git hf topic submit [<name>]"
+	echo "usage: git [list [<feature name>]]"
+	echo "       git hf topic start <feature name> <topic name>"
+	echo "		 git hf topic checkout <feature name> <topic name>"
+	echo "       git hf topic rebase [-i(nteractive)] [<topic name>]"
+	echo "		 git hf topic cancel [-f] <topic name>"
 	echo "       git hf topic finish [<name>]"
 }
 

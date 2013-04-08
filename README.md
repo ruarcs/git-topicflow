@@ -36,22 +36,19 @@ New calls:
   that no confusion occurs between similarly named topic branches on different
   features.
 
-
-`git hf topic submit [<topic name>]`
-
-* Publish the topic branch and open a pull request between it and $PROJECT.
-
-
+  
 `git hf topic cancel [<topic name>]`
 
 * Abandon the topic branch, deleting it locally and on Github if it has been
   published.
-
+  
   
 `git hf topic finish [-k(eep)] <topic name>`
 
 *  This command will <i>merge --ff-only</i> the topic branch into the feature, closing the topic locally
   AND on the remote. Finally it will push the updated feature branch to the server.
+  
+  
   
 * <i>The reason that we do a merge --ff-only is that we always want the history in the feature to remain linear.
   This significantly reduces the level of complexity in the network graph later on when we merge back to develop.</i> 
