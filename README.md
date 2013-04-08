@@ -37,21 +37,24 @@ New calls:
   features.
 
   
-`git hf topic cancel [<topic name>]`
+`git hf topic cancel <topic name>`
 
-* Abandon the topic branch, deleting it locally and on Github if it has been
-  published.
+* Abandon the topic branch, deleting it locally AND on Github if it has been
+  published. The name <i>must</i> be explicitly supplied.
   
   
-`git hf topic finish [-k(eep)] <topic name>`
+`git hf topic finish [-{k(eep)
+                       i(nteractive rebase)}] [<topic name>]`
 
-*  This command will <i>merge --ff-only</i> the topic branch into the feature, closing the topic locally
-  AND on the remote. Finally it will push the updated feature branch to the server.
+*  This command will:
+   1. <i>rebase </i> against the feature branch, interactively if this flag is specified.
+   2. <i>merge --ff-only</i> the topic branch into the feature 
+   3. close the topic locally AND remotely, <i>unless</i> the keep flag is specified.
+ 
   
   
-  
-* <i>The reason that we do a merge --ff-only is that we always want the history in the feature to remain linear.
-  This significantly reduces the level of complexity in the network graph later on when we merge back to develop.</i> 
+<i>The reason that we do a merge --ff-only is that we always want the history in the feature to remain linear.
+This significantly reduces the level of complexity in the network graph later on when we merge back to develop.</i> 
 
 HubFlow
 =======
